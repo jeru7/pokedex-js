@@ -7,11 +7,11 @@
 }
 
 :root {
-  --main-color: #cfd6dc;
-  --second-color: #b1b7c1;
-  --third-color: #86949f;
-  --fourth-color: #536878;
-  --fifth-color: #36454f;
+  --main-color: #eff4fc;
+  --second-color: #e9f0ff;
+  --third-color: #b7bec4;
+  --fourth-color: #9ba3a9;
+  --fifth-color: #808385;
 
   --primary-text: "Kanit", sans-serif;
   --secondary-text: "Kdam Thmor Pro", sans-serif;
@@ -25,12 +25,14 @@ body {
   background-color: var(--second-color);
 }
 
+/* navbar styles */
 .navbar {
   height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--main-color);
+  border-bottom: 1px solid #8080807e;
 }
 
 .navbar__container {
@@ -39,7 +41,6 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
 }
 
 .navbar__logo {
@@ -72,4 +73,24 @@ body {
 
 .navbar__options ul li:hover i {
   transform: scale(1.1);
+}
+
+.main {
+  height: 100vh;
+  border: 1px solid red;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+}
+
+.main__container {
+  border: 1px solid red;
+}
+
+.main__aside {
+  border: 1px solid red;
+}
+
+.footer {
+  height: 60px;
+  border: 1px solid red;
 }
