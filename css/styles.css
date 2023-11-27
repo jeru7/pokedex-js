@@ -28,11 +28,14 @@ body {
 /* navbar styles */
 .navbar {
   height: 60px;
+  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   background-color: var(--main-color);
-  border-bottom: 1px solid #8080807e;
+  border-bottom: 2px solid var(--fourth-color);
+  position: fixed;
+  top: 0;
 }
 
 .navbar__container {
@@ -77,20 +80,56 @@ body {
 
 .main {
   height: 100vh;
-  border: 1px solid red;
-  display: grid;
-  grid-template-columns: 1fr 4fr;
+  margin-top: 80px;
 }
 
 .main__container {
-  border: 1px solid red;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  width: 70%;
 }
 
-.main__aside {
-  border: 1px solid red;
+.main__container__search {
+  display: flex;
+  height: 20%;
+}
+
+.search__container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.25rem;
+  width: 50%;
+  margin: 0 auto;
+}
+
+.search__container input {
+  height: 40px;
+  width: 100%;
+  padding: 8px;
+  outline: none;
+  font-family: var(--secondary-text);
+  border: 1.5px solid var(--fourth-color);
+  border-radius: 4px;
+}
+
+.search__container button {
+  height: 30px;
+  font-family: var(--secondary-text);
+  border: 1.5px solid var(--fifth-color);
+  border-radius: 4px;
+  color: var(--primary-text-color);
+  background-color: var(--third-color);
+}
+
+.main__container__display {
+  height: 100%;
 }
 
 .footer {
   height: 60px;
-  border: 1px solid red;
+  background-color: var(--main-color);
+  border-top: 2px solid var(--fourth-color);
 }
