@@ -42,14 +42,17 @@
     <main class="main">
       <section class="main__container">
         <div class="main__container__search">
-          <div class="search__container">
+          <div class="main__container__searchContainer">
             <input type="text" placeholder="Search pokemon" />
             <button>SEARCH</button>
           </div>
+          <div class="main__container__searchError">
+            <p class="main__container__errorMessage">Pokemon not found.</p>
+          </div>
         </div>
         <div class="main__container__display">
-          <div class="main__container__displayLeft"></div>
-          <div class="main__container__displayRight"></div>
+          <div class="main__container__displayPokemon"></div>
+          <div class="main__container__displayStats"></div>
         </div>
       </section>
     </main>

@@ -93,10 +93,13 @@ body {
 
 .main__container__search {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.375rem;
   height: 20%;
 }
 
-.search__container {
+.main__container__searchContainer {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -105,7 +108,7 @@ body {
   margin: 0 auto;
 }
 
-.search__container input {
+.main__container__searchContainer input {
   height: 40px;
   width: 100%;
   padding: 8px;
@@ -115,7 +118,7 @@ body {
   border-radius: 4px;
 }
 
-.search__container button {
+.main__container__searchContainer button {
   height: 30px;
   font-family: var(--secondary-text);
   border: 1.5px solid var(--fifth-color);
@@ -124,8 +127,30 @@ body {
   background-color: var(--third-color);
 }
 
+.main__container__searchError {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(229, 64, 64);
+  height: 30px;
+  width: 50%;
+  color: var(--primary-text-color);
+  background-color: rgb(231, 145, 145);
+  border-radius: 4px;
+  display: none;
+}
+
 .main__container__display {
-  height: 100%;
+  border: 1px solid red;
+  display: none;
+}
+
+.main__container__displayPokemon {
+  border: 1px solid red;
+}
+
+.main__container__displayStats {
+  border: 1px solid red;
 }
 
 .footer {
