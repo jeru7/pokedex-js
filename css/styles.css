@@ -160,8 +160,18 @@ span.bold {
 
 /* TODO: Container for pokemon display */
 .main__container__display {
-  border: 1px solid red;
-  display: none;
+  display: grid;
+  margin: 1.2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.25rem;
+  padding: 1rem;
+  height: 400px;
+}
+
+.main__container__display div {
+  border-radius: 8px;
+  border: 2px solid var(--fifth-color);
+  background-color: var(--second-color);
 }
 
 .main__container__displayPokemon {
