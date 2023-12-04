@@ -49,16 +49,27 @@
             </p>
           </div>
           <div class="main__container__searchContainer">
-            <input type="text" placeholder="Search pokemon" />
+            <input id="searchInput" type="text" placeholder="Search pokemon" />
             <button id="searchButton">SEARCH</button>
           </div>
           <div class="main__container__searchError">
-            <p class="main__container__errorMessage">Pokemon not found.</p>
+            <p id="searchError" class="main__container__errorMessage">
+              Pokemon not found.
+            </p>
           </div>
         </div>
         <div class="main__container__display">
-          <div class="main__container__displayPokemon"></div>
-          <div class="main__container__displayStats"></div>
+          <div class="main__container__displayPokemon">
+            <!-- TODO: display pokemon image and name -->
+            <img
+              src="samplePNG.png"
+              alt="pokemon pic"
+              class="main__container__displayPokemon__image"
+            />
+          </div>
+          <div class="main__container__displayStats">
+            <!-- TODO: display pokemon's stats -->
+          </div>
         </div>
       </section>
     </main>
