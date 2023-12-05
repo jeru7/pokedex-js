@@ -1,4 +1,5 @@
 // TODO: class pokedex **implement oop
+//
 class Pokedex {
   constructor() {
     this.pokeCount = 151;
@@ -7,7 +8,7 @@ class Pokedex {
     this.searchError = document.querySelector("#searchError");
   }
 
-  addEvents() {
+  runPokedex() {
     this.searchBtn.addEventListener("click", () => {
       // TODO: show invalid input
       const value = this.searchInput.value;
@@ -15,22 +16,21 @@ class Pokedex {
         return;
       }
 
-      this.searchPokemon(this.searchInput);
+      this.searchPokemon(value);
     });
   }
 
   async searchPokemon(value) {
     try {
-      let pokeList = [];
-      const apiURL = `https://pokeapi.co/api/v2/pokemon?limit=${this.pokeCount}/`;
+      const apiURL = `https://pokeapi.co/api/v2/pokemon/${value}/`;
       const res = await fetch(apiURL);
 
       if (res.status !== 200) {
-        // TODO: Display no pokemon found
+        // TODO: Display in api
         return;
       } else {
-        const data = await res.json();
-        pokeList = data.results;
+        const pokeData = await res.json();
+        console.log(pokeData);
       }
     } catch (error) {
       return;
@@ -39,4 +39,4 @@ class Pokedex {
 }
 
 const pokedex = new Pokedex();
-pokedex.addEvents();
+pokedex.runPokedex();
