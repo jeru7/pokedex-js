@@ -15,6 +15,7 @@
 
   --primary-text: "Kdam Thmor Pro", sans-serif;
   --secondary-text: "Kanit", sans-serif;
+  --third-text: "VT323", sans-serif;
 
   --primary-text-color: #333333;
   --secondary-text-color: #f0f0f0;
@@ -179,7 +180,7 @@ span.bold {
   flex-direction: column;
   align-items: center;
   padding: 24px;
-  gap: 12px;
+  gap: 24px;
   background: repeating-linear-gradient(
       0deg,
       var(--third-color),
@@ -199,6 +200,14 @@ span.bold {
 .main__container__displayPokemon__image {
   height: 200px;
   width: 250px;
+}
+
+.main__container__displayPokemon__name {
+  border: 2px solid var(--fifth-color);
+  padding: 8px;
+  font-size: 2rem;
+  background-color: var(--main-color);
+  border-radius: 50px;
 }
 
 .main__container__displayStats {
