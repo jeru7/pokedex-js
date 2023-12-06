@@ -101,21 +101,6 @@ body {
   height: 20%;
 }
 
-.main__container__searchNote {
-  display: flex;
-  align-items: center;
-  padding-left: 0.25rem;
-  height: 40px;
-  width: 50%;
-  border: 1.5px solid #3498db;
-  border-radius: 4px;
-  background-color: #f0f7fb;
-}
-
-span.bold {
-  font-weight: bold;
-}
-
 .main__container__searchContainer {
   display: flex;
   flex-direction: column;
