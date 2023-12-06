@@ -6,6 +6,10 @@ class Pokedex {
     this.searchInput = document.querySelector("#searchInput");
     this.searchBtn = document.querySelector("#searchButton");
     this.searchError = document.querySelector("#searchError");
+
+    // pokemon display
+    this.pokeImage = document.querySelector("#pokePic");
+    this.pokeName = document.querySelector("#pokeName");
   }
 
   runPokedex() {
@@ -26,15 +30,26 @@ class Pokedex {
       const res = await fetch(apiURL);
 
       if (res.status !== 200) {
-        // TODO: Display in api
+        // TODO: Display api error
         return;
       } else {
         const pokeData = await res.json();
-        console.log(pokeData);
+        this.displayPokemon(pokeData);
       }
     } catch (error) {
       return;
     }
+  }
+
+  displayPokemon(data) {
+    // pokemon image and name
+    const pokeId = data.id;
+    const pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+    this.pokeImage.src = `./sprites/sprites/pokemon/other/official-artwork/${pokeId}.png`;
+    this.pokeName.innerText = pokeName;
+
+    // pokemon stats
+    console.log(data);
   }
 }
 
