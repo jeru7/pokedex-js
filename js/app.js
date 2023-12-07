@@ -12,12 +12,13 @@ class Pokedex {
     this.pokeImage = document.querySelector("#pokePic");
     this.pokeName = document.querySelector("#pokeName");
     this.pokeGif = document.querySelector("#pokeGif");
+    this.pokeId = document.querySelector("#pokeId");
   }
 
   runPokedex() {
     this.searchBtn.addEventListener("click", () => {
       // TODO: show invalid input
-      const value = this.searchInput.value;
+      const value = this.searchInput.value.toLowerCase().trim();
       if (value.trim() === "") {
         return;
       }
@@ -53,6 +54,14 @@ class Pokedex {
     this.pokeImage.src = `./sprites/sprites/pokemon/other/official-artwork/${pokeId}.png`;
     this.pokeName.innerText = pokeName;
     this.pokeGif.src = `./sprites/sprites/pokemon/other/showdown/${pokeId}.gif`;
+
+    if (pokeId < 10) {
+      this.pokeId.innerText = `No. 00${pokeId}`;
+    } else if (pokeId < 100) {
+      this.pokeId.innerText = `No. 0${pokeId}`;
+    } else {
+      this.pokeId.innerText = `No. ${pokeid}`;
+    }
 
     // pokemon stats
     console.log(data);
