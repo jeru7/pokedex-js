@@ -131,16 +131,17 @@ body {
 
 .main__container__searchError {
   display: flex;
-  justify-content: space-between;
   padding: 8px;
+  justify-content: space-between;
   align-items: center;
   border: 1px solid rgb(229, 64, 64);
-  height: 30px;
+  height: 40px;
   width: 50%;
   color: var(--primary-text-color);
   font-family: var(--primary-text);
   background-color: rgb(231, 145, 145);
   border-radius: 4px;
+  visibility: hidden;
 }
 
 .main__container__errorMessage {
@@ -149,7 +150,7 @@ body {
 
 #closeError {
   cursor: pointer;
-  font-size: 30px;
+  font-size: 20px;
   transition: transform 0.1s ease-in;
 }
 

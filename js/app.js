@@ -5,11 +5,13 @@ class Pokedex {
     this.pokeCount = 151;
     this.searchInput = document.querySelector("#searchInput");
     this.searchBtn = document.querySelector("#searchButton");
-    this.searchError = document.querySelector("#searchError");
+    this.searchError = document.querySelector(".main__container__searchError");
+    this.closeErrorButton = document.querySelector("#closeError");
 
     // pokemon display
     this.pokeImage = document.querySelector("#pokePic");
     this.pokeName = document.querySelector("#pokeName");
+    this.pokeGif = document.querySelector("#pokeGif");
   }
 
   runPokedex() {
@@ -30,7 +32,10 @@ class Pokedex {
       const res = await fetch(apiURL);
 
       if (res.status !== 200) {
-        // TODO: Display api error
+        this.searchError.style.visibility = "visible";
+        this.closeErrorButton.addEventListener("click", () => {
+          this.searchError.style.visibility = "hidden";
+        });
         return;
       } else {
         const pokeData = await res.json();
@@ -47,6 +52,7 @@ class Pokedex {
     const pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
     this.pokeImage.src = `./sprites/sprites/pokemon/other/official-artwork/${pokeId}.png`;
     this.pokeName.innerText = pokeName;
+    this.pokeGif.src = `./sprites/sprites/pokemon/other/showdown/${pokeId}.gif`;
 
     // pokemon stats
     console.log(data);
