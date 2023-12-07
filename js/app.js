@@ -2,7 +2,6 @@
 //
 class Pokedex {
   constructor() {
-    this.pokeCount = 151;
     this.searchInput = document.querySelector("#searchInput");
     this.searchBtn = document.querySelector("#searchButton");
     this.searchError = document.querySelector(".main__container__searchError");
@@ -16,15 +15,21 @@ class Pokedex {
   }
 
   runPokedex() {
-    this.searchBtn.addEventListener("click", () => {
-      // TODO: show invalid input
+    const searchHandler = () => {
       const value = this.searchInput.value.toLowerCase().trim();
-      if (value.trim() === "") {
+      if (value === "") {
         return;
       }
-
       this.searchPokemon(value);
+    };
+
+    this.searchInput.addEventListener("keydown", (event) => {
+      if (event.key === "Enter") {
+        searchHandler();
+      }
     });
+
+    this.searchBtn.addEventListener("click", searchHandler);
   }
 
   async searchPokemon(value) {
