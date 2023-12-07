@@ -60,11 +60,12 @@ class Pokedex {
     } else if (pokeId < 100) {
       this.pokeId.innerText = `No. 0${pokeId}`;
     } else {
-      this.pokeId.innerText = `No. ${pokeid}`;
+      this.pokeId.innerText = `No. ${pokeId}`;
     }
 
-    // pokemon stats
     console.log(data);
+
+    // pokemon stats
   }
 }
 
