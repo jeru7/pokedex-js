@@ -236,8 +236,38 @@ body {
 .main__container__displayStats__pokeStats {
   height: 100%;
   width: 100%;
+  padding: 12px;
+  display: grid;
+  grid-template-columns: 2fr 2fr;
+  font-family: var(--third-text);
   border: 2px solid var(--fifth-color);
   border-radius: 12px;
+}
+
+.main__container__displayStats__pokeStats__stats {
+  text-align: center;
+  padding-top: 8px;
+}
+
+.pokeStatsInfo {
+  margin-bottom: 12px;
+}
+
+p.pokeStatsInfo:last-of-type {
+  margin-bottom: 0;
+}
+
+.main__container__displayStats__pokeStats__type {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.pokeTypes {
+  border: 2px solid var(--fifth-color);
+  border-radius: 16px;
+  padding: 4px 16px;
 }
 
 .footer {
