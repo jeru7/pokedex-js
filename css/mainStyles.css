@@ -245,8 +245,9 @@ body {
 }
 
 .main__container__displayStats__pokeStats__stats {
-  text-align: center;
+  text-align: left;
   padding-top: 8px;
+  font-size: 12px;
 }
 
 .pokeStatsInfo {
@@ -255,6 +256,10 @@ body {
 
 p.pokeStatsInfo:last-of-type {
   margin-bottom: 0;
+}
+
+.pokeStatsName {
+  font-weight: 600;
 }
 
 .main__container__displayStats__pokeStats__type {
