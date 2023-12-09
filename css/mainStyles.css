@@ -129,6 +129,21 @@ body {
   cursor: pointer;
 }
 
+.main__container__searchNote {
+  display: flex;
+  align-items: center;
+  padding-left: 0.25rem;
+  height: 40px;
+  width: 50%;
+  border: 1.5px solid #3498db;
+  border-radius: 4px;
+  background-color: #f0f7fb;
+}
+
+span.bold {
+  font-weight: bold;
+}
+
 .main__container__searchError {
   display: flex;
   padding: 8px;
@@ -161,11 +176,12 @@ body {
 /* TODO: Container for pokemon display */
 .main__container__display {
   display: grid;
-  margin: 1.2rem;
+  margin: 2rem;
   grid-template-columns: 1fr 1fr;
   gap: 0.25rem;
   padding: 1rem;
   height: 400px;
+  display: none;
 }
 
 .main__container__display > div {
@@ -273,7 +289,7 @@ p.pokeStatsInfo:last-of-type {
   border-radius: 16px;
   padding: 4px 16px;
   width: fit-content;
-  font-size: 8px;
+  font-size: 20px;
   text-align: center;
 }
 
