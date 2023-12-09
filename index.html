@@ -44,6 +44,12 @@
     <main class="main">
       <section class="main__container">
         <div class="main__container__search">
+          <div class="main__container__searchNote">
+            <p class="main__container__searchNoteMessage">
+              <span class="bold">Note:</span>
+              Some pokemon doesn't exist on this pokedex.
+            </p>
+          </div>
           <div class="main__container__searchContainer">
             <input id="searchInput" type="text" placeholder="Search pokemon" />
             <button id="searchButton">SEARCH</button>
@@ -56,19 +62,10 @@
           </div>
         </div>
         <div class="main__container__display">
-          <div class="main__container__displayPokemon">
-            <!-- TODO: display pokemon image and name -->
-            <img src="samplePNG.png" alt="pokemon pic" id="pokePic" />
-            <p class="main__container__displayPokemon__name" id="pokeName">
-              Bulbasaur
-            </p>
-          </div>
+          <div class="main__container__displayPokemon"></div>
           <div class="main__container__displayStats">
             <!-- TODO: display pokemon's stats -->
-            <div class="main__container__displayStats__pokeGif">
-              <img src="samplePNG.png" alt="pokemon gif" id="pokeGif" />
-              <p id="pokeId">No. 001</p>
-            </div>
+            <div class="main__container__displayStats__pokeGif"></div>
             <div class="main__container__displayStats__pokeStats">
               <div
                 class="main__container__displayStats__pokeStats__stats"

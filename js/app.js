@@ -2,16 +2,19 @@
 //
 class Pokedex {
   constructor() {
+    this.displayContainer = document.querySelector(".main__container__display");
     this.searchInput = document.querySelector("#searchInput");
     this.searchBtn = document.querySelector("#searchButton");
     this.searchError = document.querySelector(".main__container__searchError");
     this.closeErrorButton = document.querySelector("#closeError");
 
     // pokemon display
-    this.pokeImage = document.querySelector("#pokePic");
-    this.pokeName = document.querySelector("#pokeName");
-    this.pokeGif = document.querySelector("#pokeGif");
-    this.pokeId = document.querySelector("#pokeId");
+    this.pokeDisplayContainer = document.querySelector(
+      ".main__container__displayPokemon"
+    );
+    this.pokeGifContainer = document.querySelector(
+      ".main__container__displayStats__pokeGif"
+    );
     this.pokeStatsConstainer = document.querySelector(
       ".main__container__displayStats__pokeStats__stats"
     );
@@ -59,27 +62,26 @@ class Pokedex {
   }
 
   displayPokemon(data) {
-    // pokemon image and name
-    const pokeId = data.id;
-    const pokeName = data.name.charAt(0).toUpperCase() + data.name.slice(1);
-    this.pokeImage.src = `./sprites/sprites/pokemon/other/official-artwork/${pokeId}.png`;
-    this.pokeName.innerText = pokeName;
-
-    if (pokeName === "Kyogre") {
-      this.pokeGif.style.width = "250px";
-    } else {
-      this.pokeGif.style.width = "200px";
-    }
-
-    this.pokeGif.src = `./sprites/sprites/pokemon/other/showdown/${pokeId}.gif`;
-
-    this.displayPokemonID(pokeId);
+    this.displayContainer.style.display = "grid";
+    this.displayPokemonImageName(data);
+    this.displayPokemonID(data);
     this.displayPokemonSTATS(data);
     this.displayPokemonTYPES(data);
+  }
 
-    console.log(data);
+  displayPokemonImageName(data) {
+    this.pokeDisplayContainer.innerHTML = "";
+    const pokePic = document.createElement("img");
+    pokePic.src = `./sprites/sprites/pokemon/other/official-artwork/${data.id}.png`;
+    pokePic.setAttribute("id", "pokePic");
 
-    // pokemon stats
+    const pokeName = document.createElement("p");
+    pokeName.classList.add("main__container__displayPokemon__name");
+    pokeName.setAttribute("id", "pokeName");
+    pokeName.innerText = data.name.charAt(0).toUpperCase() + data.name.slice(1);
+
+    this.pokeDisplayContainer.appendChild(pokePic);
+    this.pokeDisplayContainer.appendChild(pokeName);
   }
 
   displayPokemonTYPES(data) {
@@ -188,14 +190,25 @@ class Pokedex {
     });
   }
 
-  displayPokemonID(id) {
-    if (id < 10) {
-      this.pokeId.innerText = `No. 00${id}`;
-    } else if (id < 100) {
-      this.pokeId.innerText = `No. 0${id}`;
+  displayPokemonID(data) {
+    this.pokeGifContainer.innerHTML = "";
+    const pokeGif = document.createElement("img");
+    pokeGif.src = `./sprites/sprites/pokemon/other/showdown/${data.id}.gif`;
+    pokeGif.setAttribute("id", "pokeGif");
+
+    const pokeId = document.createElement("p");
+    pokeId.setAttribute("id", "pokeId");
+
+    if (data.id < 10) {
+      pokeId.innerText = `No. 00${data.id}`;
+    } else if (data.id < 100) {
+      pokeId.innerText = `No. 0${data.id}`;
     } else {
-      this.pokeId.innerText = `No. ${id}`;
+      pokeId.innerText = `No. ${data.id}`;
     }
+
+    this.pokeGifContainer.appendChild(pokeGif);
+    this.pokeGifContainer.appendChild(pokeId);
   }
 }
 
