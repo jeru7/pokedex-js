@@ -1,0 +1,75 @@
+@import url("https://fonts.googleapis.com/css2?family=Kanit&family=Kdam+Thmor+Pro&family=Press+Start+2P&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --main-color: #eff4fc;
+  --second-color: #e9f0ff;
+  --third-color: #b7bec4;
+  --fourth-color: #9ba3a9;
+  --fifth-color: #808385;
+
+  --primary-text: "Kdam Thmor Pro", sans-serif;
+  --secondary-text: "Kanit", sans-serif;
+  --third-text: "Press Start 2P", sans-serif;
+
+  --primary-text-color: #333333;
+  --secondary-text-color: #f0f0f0;
+  --third-text-color: #808080;
+}
+
+/* navbar styles */
+.navbar {
+  height: 60px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--main-color);
+  border-bottom: 2px solid var(--fourth-color);
+  position: fixed;
+  top: 0;
+}
+
+.navbar__container {
+  height: 100%;
+  width: 70%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.navbar__logo {
+  font-family: var(--primary-text);
+  font-size: 1.8rem;
+}
+
+.navbar__logo a {
+  text-decoration: none;
+  color: var(--primary-text-color);
+}
+
+.navbar__options ul {
+  height: inherit;
+  width: 300px;
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.navbar__options ul li {
+  list-style: none;
+}
+
+.navbar__options ul li i {
+  color: var(--primary-text-color);
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.navbar__options ul li:hover i {
+  transform: scale(1.1);
+}
