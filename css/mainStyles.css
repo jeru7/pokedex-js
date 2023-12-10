@@ -163,16 +163,6 @@ span.bold {
   font-size: 14px;
 }
 
-#closeError {
-  cursor: pointer;
-  font-size: 20px;
-  transition: transform 0.1s ease-in;
-}
-
-#closeError:hover {
-  transform: scale(1.1);
-}
-
 /* TODO: Container for pokemon display */
 .main__container__display {
   display: grid;
@@ -232,6 +222,17 @@ span.bold {
   justify-content: center;
   align-items: center;
   padding: 12px;
+}
+
+#favoriteButton {
+  margin-left: auto;
+  font-size: 24px;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+#favoriteButton:hover {
+  transform: scale(1.1);
 }
 
 .main__container__displayStats__pokeGif {
