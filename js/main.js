@@ -6,7 +6,9 @@ class Pokedex {
     this.searchInput = document.querySelector("#searchInput");
     this.searchBtn = document.querySelector("#searchButton");
     this.searchError = document.querySelector(".main__container__searchError");
-    this.closeErrorButton = document.querySelector("#closeError");
+    this.errorMessage = document.querySelector("#searchError");
+    this.favoriteButton = document.querySelector("#favoriteButton");
+    this.favoritePokemon = [];
 
     // pokemon display
     this.pokeDisplayContainer = document.querySelector(
@@ -47,14 +49,16 @@ class Pokedex {
       const res = await fetch(apiURL);
 
       if (res.status !== 200) {
+        this.errorMessage.innerText = `Oops! Pokemon not found. `;
         this.searchError.style.visibility = "visible";
-        this.closeErrorButton.addEventListener("click", () => {
+        setTimeout(() => {
           this.searchError.style.visibility = "hidden";
-        });
+        }, 3000);
         return;
       } else {
         const pokeData = await res.json();
         this.displayPokemon(pokeData);
+        this.addToFavorites(pokeData);
       }
     } catch (error) {
       return;
@@ -62,11 +66,37 @@ class Pokedex {
   }
 
   displayPokemon(data) {
-    this.displayContainer.style.display = "grid";
     this.displayPokemonImageName(data);
     this.displayPokemonID(data);
     this.displayPokemonSTATS(data);
     this.displayPokemonTYPES(data);
+  }
+
+  addToFavorites(data) {
+    this.favoriteButton.addEventListener("click", () => {
+      const checkFavorite = this.favoritePokemon.some(
+        (pokemon) => pokemon.id === data.id
+      );
+
+      if (!checkFavorite) {
+        this.favoritePokemon.push({
+          id: data.id,
+          name: data.name,
+          types: data.types.map((type) => type.type.name),
+          stats: data.stats.map((stat) => ({
+            name: stat.stat.name,
+            value: stat.base_stat,
+          })),
+        });
+      } else {
+        this.errorMessage.innerText = `${data.name} already exist on your favorites!`;
+        this.searchError.style.visibility = "visible";
+        setTimeout(() => {
+          this.searchError.style.visibility = "hidden";
+        }, 3000);
+        return;
+      }
+    });
   }
 
   displayPokemonImageName(data) {
@@ -80,8 +110,11 @@ class Pokedex {
     pokeName.setAttribute("id", "pokeName");
     pokeName.innerText = data.name.charAt(0).toUpperCase() + data.name.slice(1);
 
-    this.pokeDisplayContainer.appendChild(pokePic);
-    this.pokeDisplayContainer.appendChild(pokeName);
+    pokePic.addEventListener("load", () => {
+      this.pokeDisplayContainer.appendChild(pokePic);
+      this.pokeDisplayContainer.appendChild(pokeName);
+      this.displayContainer.style.display = "grid";
+    });
   }
 
   displayPokemonTYPES(data) {
