@@ -1,5 +1,3 @@
-// TODO: class pokedex **implement oop
-//
 class Pokedex {
   constructor() {
     this.displayContainer = document.querySelector(".main__container__display");
@@ -7,11 +5,10 @@ class Pokedex {
     this.searchBtn = document.querySelector("#searchButton");
     this.searchError = document.querySelector(".main__container__searchError");
     this.errorMessage = document.querySelector("#searchError");
-    this.favoriteButton = document.querySelector("#favoriteButton");
     this.favoritePokemon = [];
-    this.lastSearchedPokemon = null;
 
-    // pokemon display
+    this.loadFavoritePokemon();
+
     this.pokeDisplayContainer = document.querySelector(
       ".main__container__displayPokemon"
     );
@@ -24,9 +21,10 @@ class Pokedex {
     this.pokeTypesContainer = document.querySelector(
       ".main__container__displayStats__pokeStats__type"
     );
+
+    this.runPokedex();
   }
 
-  // runs pokedex
   runPokedex() {
     const searchHandler = () => {
       const value = this.searchInput.value.toLowerCase().trim();
@@ -42,16 +40,9 @@ class Pokedex {
       }
     });
 
-    this.favoriteButton.addEventListener("click", () => {
-      if (this.lastSearchedPokemon) {
-        this.toggleFavorite(this.lastSearchedPokemon);
-      }
-    });
-
     this.searchBtn.addEventListener("click", searchHandler);
   }
 
-  // search pokemon using fetch api
   async searchPokemon(value) {
     try {
       const apiURL = `https://pokeapi.co/api/v2/pokemon/${value}/`;
@@ -66,7 +57,6 @@ class Pokedex {
         return;
       } else {
         const pokeData = await res.json();
-        this.lastSearchedPokemon = pokeData;
         this.displayPokemon(pokeData);
       }
     } catch (error) {
@@ -74,49 +64,55 @@ class Pokedex {
     }
   }
 
-  toggleFavorite(pokemon) {
-    const index = this.favoritePokemon.findIndex(
-      (fav) => fav.id === pokemon.id
-    );
-
-    if (index === -1) {
-      pokemon.isFavorite = true;
-      this.favoritePokemon.push(pokemon);
-    } else {
-      pokemon.isFavorite = false;
-      this.favoritePokemon.splice(index, 1);
-    }
-
-    this.updateFavoriteButton(pokemon);
-  }
-
-  updateFavoriteButton(pokemon) {
-    const favoriteButton = this.favoriteButton;
-    if (pokemon.isFavorite) {
-      favoriteButton.classList.remove("fa-regular", "fa-heart");
-      favoriteButton.classList.add("fa-solid", "fa-heart");
-    } else {
-      favoriteButton.classList.remove("fa-solid", "fa-heart");
-      favoriteButton.classList.add("fa-regular", "fa-heart");
-    }
-  }
-
-  // DISPLAY METHODS
-  // display pokemon on the displayContainer
   displayPokemon(data) {
     this.pokeDisplayContainer.innerHTML = "";
     this.pokeStatsConstainer.innerHTML = "";
     this.pokeTypesContainer.innerHTML = "";
     this.pokeGifContainer.innerHTML = "";
 
-    // methods to display specific items of pokemons
     this.displayPokemonImageName(data);
     this.displayPokemonID(data);
     this.displayPokemonSTATS(data);
     this.displayPokemonTYPES(data);
+
+    this.toggleFavButton(data);
+    this.updateFavButton(data);
+
+    this.saveFavoriteState();
   }
 
-  // display image and name of the pokemon
+  toggleFavButton(data) {
+    const favButton = document.querySelector("#favoriteButton");
+
+    favButton.removeEventListener("click", this.handleFavButtonClick);
+
+    this.handleFavButtonClick = () => {
+      const isFavorite = this.favoritePokemon.includes(data.id);
+
+      if (isFavorite) {
+        const index = this.favoritePokemon.indexOf(data.id);
+        if (index !== -1) {
+          this.favoritePokemon.splice(index, 1);
+        }
+      } else {
+        this.favoritePokemon.push(data.id);
+      }
+
+      this.updateFavButton(data);
+      this.saveFavoriteState();
+    };
+
+    favButton.addEventListener("click", this.handleFavButtonClick);
+  }
+
+  updateFavButton(data) {
+    const isFavorite = this.favoritePokemon.includes(data.id);
+    const favButton = document.querySelector("#favoriteButton");
+
+    favButton.classList.remove("fa-solid", "fa-regular");
+    favButton.classList.add(isFavorite ? "fa-solid" : "fa-regular", "fa-heart");
+  }
+
   displayPokemonImageName(data) {
     this.searchBtn.disabled = true;
 
@@ -137,7 +133,6 @@ class Pokedex {
     });
   }
 
-  // display then types of the pokemon
   displayPokemonTYPES(data) {
     this.pokeTypesContainer.innerHTML = "";
 
@@ -209,7 +204,6 @@ class Pokedex {
     });
   }
 
-  // display the stats of the pokemon
   displayPokemonSTATS(data) {
     this.pokeStatsConstainer.innerHTML = "";
 
@@ -245,7 +239,6 @@ class Pokedex {
     });
   }
 
-  // display the pokemon id
   displayPokemonID(data) {
     this.pokeGifContainer.innerHTML = "";
     const pokeGif = document.createElement("img");
@@ -266,7 +259,20 @@ class Pokedex {
     this.pokeGifContainer.appendChild(pokeGif);
     this.pokeGifContainer.appendChild(pokeId);
   }
+
+  saveFavoriteState() {
+    localStorage.setItem(
+      "favoritePokemon",
+      JSON.stringify(this.favoritePokemon)
+    );
+  }
+
+  loadFavoritePokemon() {
+    const storedFavoritePokemon = localStorage.getItem("favoritePokemon");
+    if (storedFavoritePokemon) {
+      this.favoritePokemon = JSON.parse(storedFavoritePokemon);
+    }
+  }
 }
 
 const pokedex = new Pokedex();
-pokedex.runPokedex();
