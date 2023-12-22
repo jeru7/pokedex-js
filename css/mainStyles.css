@@ -98,6 +98,9 @@ body {
   align-items: center;
   gap: 0.375rem;
   height: 20%;
+  min-width: 200px;
+  width: 100%;
+  margin: 0 auto;
 }
 
 .main__container__searchContainer {
@@ -105,8 +108,7 @@ body {
   flex-direction: column;
   justify-content: center;
   gap: 0.25rem;
-  width: 50%;
-  margin: 0 auto;
+  width: 100%;
 }
 
 .main__container__searchContainer input {
@@ -134,7 +136,7 @@ body {
   align-items: center;
   padding-left: 0.25rem;
   height: 40px;
-  width: 50%;
+  width: 100%;
   border: 1.5px solid #3498db;
   border-radius: 4px;
   background-color: #f0f7fb;
@@ -151,7 +153,8 @@ span.bold {
   align-items: center;
   border: 1px solid rgb(229, 64, 64);
   height: 40px;
-  width: 50%;
+  min-width: 200px;
+  width: 100%;
   color: var(--primary-text-color);
   font-family: var(--primary-text);
   background-color: rgb(231, 145, 145);
@@ -297,4 +300,26 @@ p.pokeStatsInfo:last-of-type {
   height: 60px;
   background-color: var(--main-color);
   border-top: 2px solid var(--fourth-color);
+}
+/* responsive styles */
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+  .main__container__searchNoteMessage,
+  .main__container__errorMessage {
+    font-size: 14px;
+  }
+}
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+  .main__container__searchNoteMessage,
+  .main__container__errorMessage {
+    font-size: 12px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .main__container__searchNoteMessage,
+  .main__container__errorMessage {
+    font-size: 12px;
+  }
 }
