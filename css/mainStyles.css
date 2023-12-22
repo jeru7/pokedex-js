@@ -80,7 +80,7 @@ body {
 }
 
 .main {
-  height: 100vh;
+  height: 800px;
   margin-top: 80px;
 }
 
@@ -163,7 +163,6 @@ span.bold {
   font-size: 14px;
 }
 
-/* TODO: Container for pokemon display */
 .main__container__display {
   display: grid;
   margin: 2rem;

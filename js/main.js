@@ -1,14 +1,9 @@
+// pokedex class
 class Pokedex {
+  // constructor
   constructor() {
+    // containers
     this.displayContainer = document.querySelector(".main__container__display");
-    this.searchInput = document.querySelector("#searchInput");
-    this.searchBtn = document.querySelector("#searchButton");
-    this.searchError = document.querySelector(".main__container__searchError");
-    this.errorMessage = document.querySelector("#searchError");
-    this.favoritePokemon = [];
-
-    this.loadFavoritePokemon();
-
     this.pokeDisplayContainer = document.querySelector(
       ".main__container__displayPokemon"
     );
@@ -22,33 +17,64 @@ class Pokedex {
       ".main__container__displayStats__pokeStats__type"
     );
 
+    // search inputs, button, and error messages
+    this.searchInput = document.querySelector("#searchInput");
+    this.searchBtn = document.querySelector("#searchButton");
+    this.searchError = document.querySelector(".main__container__searchError");
+    this.errorMessage = document.querySelector("#searchError");
+    this.searchInProgress = false;
+
+    // favorite functions
+    this.favoritePokemon = [];
+    this.loadFavoritePokemon();
+
+    // runs pokedex after being initialized
     this.runPokedex();
   }
 
+  // run pokedex method
   runPokedex() {
+    // checks the search input first
     const searchHandler = () => {
-      const value = this.searchInput.value.toLowerCase().trim();
-      if (value === "") {
+      if (this.searchInProgress) {
+        // return if the user already pressed the enter and currently searching for pokemon
         return;
       }
+
+      this.searchInProgress = true;
+
+      const value = this.searchInput.value.toLowerCase().trim();
+      if (value === "") {
+        // return if the user searched for a blank text
+        this.searchInProgress = true;
+        return;
+      }
+
+      // runs the search pokemon method
       this.searchPokemon(value);
     };
 
+    // enables the user to search when the user presses enter key
     this.searchInput.addEventListener("keydown", (event) => {
       if (event.key === "Enter") {
         searchHandler();
       }
     });
 
+    // enables the user to search when the user presses the search button
     this.searchBtn.addEventListener("click", searchHandler);
   }
 
+  // search pokemon async function
   async searchPokemon(value) {
     try {
       const apiURL = `https://pokeapi.co/api/v2/pokemon/${value}/`;
+      // fetch the api
       const res = await fetch(apiURL);
 
+      // checks if the status is not 200
       if (res.status !== 200) {
+        // display error messages if the status is 200
         this.errorMessage.innerText = `Oops! Pokemon not found. `;
         this.searchError.style.visibility = "visible";
         setTimeout(() => {
@@ -56,15 +82,21 @@ class Pokedex {
         }, 3000);
         return;
       } else {
+        // converts the data to json
         const pokeData = await res.json();
+        // runs the display pokemon method
         this.displayPokemon(pokeData);
       }
     } catch (error) {
       return;
+    } finally {
+      this.searchInProgress = false;
     }
   }
 
+  // function that displays the details about the pokemon
   displayPokemon(data) {
+    // resets
     this.pokeDisplayContainer.innerHTML = "";
     this.pokeStatsConstainer.innerHTML = "";
     this.pokeTypesContainer.innerHTML = "";
