@@ -17,6 +17,12 @@ class Pokedex {
       ".main__container__displayStats__pokeStats__type"
     );
 
+    if (this.isDarkMode) {
+      this.pokeStatsConstainer.classList.add("dark");
+    } else {
+      this.pokeStatsConstainer.classList.remove("dark");
+    }
+
     // search inputs, button, and error messages
     this.searchInput = document.querySelector("#searchInput");
     this.searchBtn = document.querySelector("#searchButton");
@@ -53,12 +59,10 @@ class Pokedex {
     );
     const favButton = document.querySelector("#favoriteButton");
     const pokeId = document.querySelector("#pokeId");
-    const pokeStats = document.querySelector(
-      ".main__container__displayStats__pokeStats"
-    );
-    const pokeStatsContainer = document.querySelector(
+    const pokeStatsContainerElement = document.querySelector(
       ".main__container__displayStats"
     );
+
     this.footerContainer = document.querySelector(".footer");
     this.footerIcon = document.querySelectorAll(".icons");
 
@@ -72,12 +76,17 @@ class Pokedex {
     this.searchNoteContainer.classList.toggle("dark");
     this.displayContainer.classList.toggle("dark");
     this.pokeDisplayContainer.classList.toggle("dark");
-    pokeName.classList.toggle("dark");
+    if (pokeName) {
+      pokeName.classList.toggle("dark");
+    }
     favButton.classList.toggle("dark");
-    pokeId.classList.toggle("dark");
-    pokeStats.classList.toggle("dark");
-    pokeStatsContainer.classList.toggle("dark");
-    this.pokeTypesContainer.classList.toggle("dark");
+    if (pokeId) {
+      pokeId.classList.toggle("dark");
+    }
+    if (pokeStatsContainerElement) {
+      pokeStatsContainerElement.classList.toggle("dark");
+    }
+    this.pokeStatsConstainer.classList.toggle("dark");
     this.footerContainer.classList.toggle("dark");
     this.footerIcon.forEach((icon) => {
       icon.classList.toggle("dark");
@@ -211,6 +220,12 @@ class Pokedex {
     favButton.classList.remove("fa-solid", "fa-regular");
     favButton.classList.add(isFavorite ? "fa-solid" : "fa-regular", "fa-heart");
 
+    if (this.isDarkMode) {
+      favButton.classList.add("dark");
+    } else {
+      favButton.classList.remove("dark");
+    }
+
     if (isFavorite) {
       favButton.style.color = "#FF4033";
     } else {
@@ -229,6 +244,12 @@ class Pokedex {
     const pokeName = document.createElement("p");
     pokeName.classList.add("main__container__displayPokemon__name");
 
+    if (this.isDarkMode) {
+      pokeName.classList.add("dark");
+    } else {
+      pokeName.classList.remove("dark");
+    }
+
     // pokeName.classList.add("dark");
     pokeName.setAttribute("id", "pokeName");
     pokeName.innerText = data.name.charAt(0).toUpperCase() + data.name.slice(1);
@@ -245,11 +266,23 @@ class Pokedex {
   displayPokemonTYPES(data) {
     this.pokeTypesContainer.innerHTML = "";
 
+    if (this.isDarkMode) {
+      this.pokeTypesContainer.classList.add("dark");
+    } else {
+      this.pokeTypesContainer.classList.remove("dark");
+    }
+
     data.types.forEach((dataType) => {
       const typeName = dataType.type.name;
 
       const typeElement = document.createElement("p");
       typeElement.classList.add("pokeTypes");
+
+      if (this.isDarkMode) {
+        this.pokeTypesContainer.classList.add("dark");
+      } else {
+        this.pokeTypesContainer.classList.remove("dark");
+      }
 
       typeElement.innerText = `${typeName.toUpperCase()}`;
       switch (typeName) {
@@ -358,6 +391,12 @@ class Pokedex {
 
     const pokeId = document.createElement("p");
     pokeId.setAttribute("id", "pokeId");
+
+    if (this.isDarkMode) {
+      pokeId.classList.add("dark");
+    } else {
+      pokeId.classList.remove("dark");
+    }
 
     if (data.id < 10) {
       pokeId.innerText = `No. 00${data.id}`;
