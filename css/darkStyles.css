@@ -70,7 +70,7 @@ body.dark {
 }
 
 .main__container__displayStats.dark {
-  border-color: var(--third-color-dark);
+  border-color: var(--fourth-color-dark);
   background-color: var(--second-color-dark);
 }
 
@@ -82,9 +82,12 @@ body.dark {
   color: var(--text-color-dark);
 }
 
-.main__container__displayStats__pokeStats.dark {
+/* .main__container__displayStats__pokeStats.dark {
   border-color: var(--fourth-color-dark);
   color: var(--text-color-dark);
+} */
+.main__container__displayStats__pokeStats__stats.dark > * {
+  color: var(--text-color-dark) !important;
 }
 
 .main__container__displayStats__pokeStats__type.dark {
