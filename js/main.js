@@ -27,6 +27,7 @@ class Pokedex {
     // favorite functions
     this.favoritePokemon = [];
     this.loadFavoritePokemon();
+    this.checkFavorites();
 
     // runs pokedex after being initialized
     this.runPokedex();
@@ -63,6 +64,19 @@ class Pokedex {
 
     // enables the user to search when the user presses the search button
     this.searchBtn.addEventListener("click", searchHandler);
+  }
+
+  checkFavorites() {
+    const favoritesLink = document.querySelector(
+      ".navbar__options__buttons.fav"
+    );
+
+    if (favoritesLink) {
+      favoritesLink.addEventListener("click", () => {
+        this.saveFavoriteState();
+        window.location.href = "./favorites.html";
+      });
+    }
   }
 
   // search pokemon async function
