@@ -5,6 +5,10 @@ const favoritePokemon =
 // favorite pokemon display containers
 const favoriteContainer = document.querySelector(".main__favoritesContainer");
 
+// empty message container
+const emptyMessageContainer = document.querySelector(
+  ".main__noPokemonContainer"
+);
 async function checkFavoritesPokemon() {
   console.log("Checking favorite Pokemon...");
   for (const pokeId of favoritePokemon) {
@@ -13,8 +17,7 @@ async function checkFavoritesPokemon() {
       const res = await fetch(apiURL);
 
       if (res.status !== 200) {
-        // display error on the pokemon container
-        displayErrorPokemon();
+        alert("ERROR IN API");
         continue;
       }
 
@@ -22,13 +25,19 @@ async function checkFavoritesPokemon() {
 
       displayPokemon(pokeData);
     } catch (error) {
-      console.log(error);
+      alert(`Error: ${error}`);
     }
   }
 }
 
 function displayPokemon(data) {
-  console.log("Displaying Pokemon:", data.name);
+  if (favoritePokemon.length == 0) {
+    emptyMessageContainer.style.display = "block";
+    favoriteContainer.style.display = "none";
+  } else {
+    emptyMessageContainer.style.display = "none";
+    favoriteContainer.style.display = "grid";
+  }
 
   const pokemonContainer = document.createElement("div");
   pokemonContainer.classList.add("main__favoritesContainer__pokemon");
@@ -40,6 +49,10 @@ function displayPokemon(data) {
   deleteButton.classList.add("fa");
   deleteButton.classList.add("fa-trash");
   deleteButton.setAttribute("id", "deleteButton");
+
+  deleteButton.addEventListener("click", () =>
+    deletePokemon(data, pokemonContainer)
+  );
 
   pokemonContainerTop.appendChild(deleteButton);
 
@@ -221,6 +234,16 @@ function displayPokeGif(data, container) {
   gifContainer.appendChild(pokeGif);
 
   container.appendChild(gifContainer);
+}
+
+function deletePokemon(data, currentContainer) {
+  currentContainer.remove();
+
+  const index = favoritePokemon.indexOf(data.id);
+  if (index !== -1) {
+    favoritePokemon.splice(index, 1);
+    localStorage.setItem("favoritePokemon", JSON.stringify(favoritePokemon));
+  }
 }
 
 checkFavoritesPokemon();

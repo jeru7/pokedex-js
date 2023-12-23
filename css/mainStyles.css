@@ -301,9 +301,33 @@ p.pokeStatsInfo:last-of-type {
 }
 
 .footer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 8px;
   height: 60px;
   background-color: var(--main-color);
   border-top: 2px solid var(--fourth-color);
+}
+
+.footer__iconsContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.icons {
+  font-size: 24px;
+  color: var(--primary-text-color);
+  transition: transform 0.3s ease;
+}
+
+.icons:hover {
+  transform: scale(1.1);
+}
+
+.footer__nameContainer {
+  font-size: 8px;
 }
 
 /* responsive styles */

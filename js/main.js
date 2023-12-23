@@ -157,6 +157,12 @@ class Pokedex {
 
     favButton.classList.remove("fa-solid", "fa-regular");
     favButton.classList.add(isFavorite ? "fa-solid" : "fa-regular", "fa-heart");
+
+    if (isFavorite) {
+      favButton.style.color = "#FF4033";
+    } else {
+      favButton.style.color = "#333333";
+    }
   }
 
   displayPokemonImageName(data) {
