@@ -1,1 +1,139 @@
 /* TODO: dark styles (dark mode) */
+:root {
+  --main-color-dark: #2a2a2a;
+  --second-color-dark: #393939;
+  --third-color-dark: #4c4c4c;
+  --fourth-color-dark: #646464;
+  --fifth-color-dark: #7d7d7d;
+  --text-color-dark: #ffffff;
+}
+
+body.dark {
+  background-color: var(--main-color-dark);
+}
+
+/* nav bar (main - fav page) */
+.navbar.dark {
+  background-color: var(--second-color-dark);
+  border-bottom: 2px solid var(--main-color-dark);
+}
+
+.navbar__logo.dark a {
+  color: var(--text-color-dark);
+}
+
+.navbar__options.dark ul li i {
+  text-decoration: none;
+  color: var(--text-color-dark);
+}
+
+/* main page - main */
+
+.main__container__searchContainer.dark input {
+  background-color: var(--fourth-color-dark);
+  border: var(--third-color-dark);
+}
+
+.main__container__searchContainer.dark button {
+  border-color: var(--second-color-dark);
+  background-color: var(--fourth-color-dark);
+}
+
+.main__container__searchNote.dark {
+  background-color: var(--fourth-color-dark);
+  border-color: var(--third-color-dark);
+}
+
+/* main page - display pokemon */
+.main__container__displayPokemon.dark {
+  border-color: var(--third-color-dark);
+  background: repeating-linear-gradient(
+      0deg,
+      var(--fifth-color-dark),
+      var(--fifth-color-dark) 2px,
+      transparent 1px,
+      transparent 20px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      var(--fifth-color-dark),
+      var(--fifth-color-dark) 2px,
+      transparent 1px,
+      transparent 20px
+    );
+}
+
+.main__container__displayPokemon__name.dark {
+  border-color: var(--text-color-dark);
+  background-color: var(--third-color-dark);
+  color: var(--text-color-dark);
+}
+
+.main__container__displayStats.dark {
+  border-color: var(--third-color-dark);
+  background-color: var(--second-color-dark);
+}
+
+#favoriteButton.dark {
+  color: #ff4033 !important;
+}
+
+#pokeId.dark {
+  color: var(--text-color-dark);
+}
+
+.main__container__displayStats__pokeStats.dark {
+  border-color: var(--fourth-color-dark);
+  color: var(--text-color-dark);
+}
+
+.main__container__displayStats__pokeStats__type.dark {
+  color: var(--main-color-dark);
+}
+
+/* favorites page */
+.main__noPokemonContainer.dark {
+  color: var(--text-color-dark);
+}
+
+.main__favoritesContainer.dark {
+  background-color: var(--second-color-dark);
+  border-color: var(--fourth-color-dark);
+}
+
+.main__favoritesContainer__pokemon.dark {
+  background-color: var(--main-color-dark);
+  border-color: var(--fourth-color-dark);
+}
+
+.pokeName.dark {
+  border-color: var(--second-color-dark);
+  background-color: var(--fourth-color-dark);
+  color: var(--text-color-dark);
+}
+
+.pokeId.dark {
+  color: var(--text-color-dark);
+}
+
+.main__favoritesContainer__pokemon__bottom.dark {
+  background-color: var(--main-color-dark);
+  border-color: var(--third-color-dark) !important;
+}
+
+.main__favoritesContainer__pokemon__bottom__pokeStats.dark {
+  color: var(--text-color-dark);
+}
+/* footer */
+.footer.dark {
+  background-color: var(--second-color-dark);
+  border-color: var(--main-color-dark);
+}
+
+.icons.dark {
+  color: var(--text-color-dark);
+}
+
+.footer__nameContainer.dark {
+  color: var(--text-color-dark);
+}

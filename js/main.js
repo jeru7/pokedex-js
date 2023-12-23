@@ -31,6 +31,57 @@ class Pokedex {
 
     // runs pokedex after being initialized
     this.runPokedex();
+
+    this.isDarkMode = false;
+    this.darkModeButton = document.querySelector("#darkModeToggler");
+    this.darkModeButton.addEventListener("click", () => this.toggleDarkMode());
+  }
+
+  toggleDarkMode() {
+    this.bodyElement = document.querySelector("body");
+    this.navElement = document.querySelector(".navbar");
+    this.navLogoElement = document.querySelector(".navbar__logo");
+    this.navOptions = document.querySelector(".navbar__options");
+    this.searchContainer = document.querySelector(
+      ".main__container__searchContainer"
+    );
+    this.searchNoteContainer = document.querySelector(
+      ".main__container__searchNote"
+    );
+    const pokeName = document.querySelector(
+      ".main__container__displayPokemon__name"
+    );
+    const favButton = document.querySelector("#favoriteButton");
+    const pokeId = document.querySelector("#pokeId");
+    const pokeStats = document.querySelector(
+      ".main__container__displayStats__pokeStats"
+    );
+    const pokeStatsContainer = document.querySelector(
+      ".main__container__displayStats"
+    );
+    this.footerContainer = document.querySelector(".footer");
+    this.footerIcon = document.querySelectorAll(".icons");
+
+    this.isDarkMode = !this.isDarkMode;
+
+    this.bodyElement.classList.toggle("dark");
+    this.navElement.classList.toggle("dark");
+    this.navLogoElement.classList.toggle("dark");
+    this.navOptions.classList.toggle("dark");
+    this.searchContainer.classList.toggle("dark");
+    this.searchNoteContainer.classList.toggle("dark");
+    this.displayContainer.classList.toggle("dark");
+    this.pokeDisplayContainer.classList.toggle("dark");
+    pokeName.classList.toggle("dark");
+    favButton.classList.toggle("dark");
+    pokeId.classList.toggle("dark");
+    pokeStats.classList.toggle("dark");
+    pokeStatsContainer.classList.toggle("dark");
+    this.pokeTypesContainer.classList.toggle("dark");
+    this.footerContainer.classList.toggle("dark");
+    this.footerIcon.forEach((icon) => {
+      icon.classList.toggle("dark");
+    });
   }
 
   // run pokedex method
@@ -126,7 +177,7 @@ class Pokedex {
 
     this.saveFavoriteState();
   }
-
+  // function that handles the fav function
   toggleFavButton(data) {
     const favButton = document.querySelector("#favoriteButton");
 
@@ -137,6 +188,7 @@ class Pokedex {
 
       if (isFavorite) {
         const index = this.favoritePokemon.indexOf(data.id);
+        // deletes the current pokemon on the pokemon favorites
         if (index !== -1) {
           this.favoritePokemon.splice(index, 1);
         }
@@ -151,6 +203,7 @@ class Pokedex {
     favButton.addEventListener("click", this.handleFavButtonClick);
   }
 
+  // handles the fav button ui
   updateFavButton(data) {
     const isFavorite = this.favoritePokemon.includes(data.id);
     const favButton = document.querySelector("#favoriteButton");
@@ -165,6 +218,7 @@ class Pokedex {
     }
   }
 
+  // display pokemon image and name
   displayPokemonImageName(data) {
     this.searchBtn.disabled = true;
 
@@ -174,6 +228,8 @@ class Pokedex {
 
     const pokeName = document.createElement("p");
     pokeName.classList.add("main__container__displayPokemon__name");
+
+    // pokeName.classList.add("dark");
     pokeName.setAttribute("id", "pokeName");
     pokeName.innerText = data.name.charAt(0).toUpperCase() + data.name.slice(1);
 
@@ -185,6 +241,7 @@ class Pokedex {
     });
   }
 
+  // diplay pokemon type/s
   displayPokemonTYPES(data) {
     this.pokeTypesContainer.innerHTML = "";
 
@@ -256,6 +313,7 @@ class Pokedex {
     });
   }
 
+  // display pokemon stats
   displayPokemonSTATS(data) {
     this.pokeStatsConstainer.innerHTML = "";
 
@@ -291,6 +349,7 @@ class Pokedex {
     });
   }
 
+  // display pokemon id
   displayPokemonID(data) {
     this.pokeGifContainer.innerHTML = "";
     const pokeGif = document.createElement("img");
@@ -312,6 +371,7 @@ class Pokedex {
     this.pokeGifContainer.appendChild(pokeId);
   }
 
+  // save the favorite pokemon to local storage then convert it to string
   saveFavoriteState() {
     localStorage.setItem(
       "favoritePokemon",
@@ -319,6 +379,7 @@ class Pokedex {
     );
   }
 
+  // loads the local storage
   loadFavoritePokemon() {
     const storedFavoritePokemon = localStorage.getItem("favoritePokemon");
     if (storedFavoritePokemon) {
