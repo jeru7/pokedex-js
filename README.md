@@ -4,13 +4,13 @@
 
 This is a simple pokedex that lets you save your favorite pokemon on your local storage using javascript!!
 
-index.html - main page's html file (structure)
-favorites.html - favorites page's html file (structure)
-main.js - js file for the main page (index.html) (functions)
-favorites.js - js file for the favorites page (functions)
-mainStyles.css - css file that handles the stylingfor the main page (style)
-favoritesStyles.css - css file that handles the styling for the favorites page (style)
-darkStyles.css - css file that handles the dark mode styles for both pages (style)
+- index.html - main page's html file (structure)
+- favorites.html - favorites page's html file (structure)
+- main.js - js file for the main page (index.html) (functions)
+- favorites.js - js file for the favorites page (functions)
+- mainStyles.css - css file that handles the stylingfor the main page (style)
+- favoritesStyles.css - css file that handles the styling for the favorites page (style)
+- darkStyles.css - css file that handles the dark mode styles for both pages (style)
 
 ## How to use
 
