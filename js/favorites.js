@@ -9,8 +9,152 @@ const favoriteContainer = document.querySelector(".main__favoritesContainer");
 const emptyMessageContainer = document.querySelector(
   ".main__noPokemonContainer"
 );
+
+// dark mode
+let isDarkMode = localStorage.getItem("darkMode") === "true";
+darkModeButton = document.querySelector("#darkModeToggler");
+darkModeButton.addEventListener("click", () => toggleDarkMode());
+
+// handles the dark styles if the dark mode is on on the main page
+function applyDarkStyles() {
+  const bodyElement = document.querySelector("body");
+  const navElement = document.querySelector(".navbar");
+  const navLogoElement = document.querySelector(".navbar__logo");
+  const navOptions = document.querySelector(".navbar__options");
+  const noPokemonElement = document.querySelector(".main__noPokemonContainer");
+  const favoritesContainer = document.querySelector(
+    ".main__favoritesContainer"
+  );
+  const pokemonContainer = document.querySelectorAll(
+    ".main__favoritesContainer__pokemon"
+  );
+  const pokeName = document.querySelectorAll(".pokeName");
+  const pokeId = document.querySelectorAll(".pokeId");
+  const bottomContainer = document.querySelectorAll(
+    ".main__favoritesContainer__pokemon__bottom"
+  );
+  const pokeStats = document.querySelectorAll(
+    ".main__favoritesContainer__pokemon__bottom__pokeStats"
+  );
+
+  const footerContainer = document.querySelector(".footer");
+  const footerIcon = document.querySelectorAll(".icons");
+  if (isDarkMode) {
+    bodyElement.classList.add("dark");
+    navElement.classList.add("dark");
+    navLogoElement.classList.add("dark");
+    navOptions.classList.add("dark");
+    noPokemonElement.classList.add("dark");
+    favoritesContainer.classList.add("dark");
+    pokemonContainer.forEach((pokemon) => {
+      pokemon.classList.add("dark");
+    });
+    pokeName.forEach((pokemon) => {
+      pokemon.classList.add("dark");
+    });
+    pokeId.forEach((pokemon) => {
+      pokemon.classList.add("dark");
+    });
+    bottomContainer.forEach((container) => {
+      container.classList.add("dark");
+    });
+    pokeStats.forEach((stats) => {
+      stats.classList.add("dark");
+    });
+
+    footerContainer.classList.add("dark");
+    footerIcon.forEach((icon) => {
+      icon.classList.add("dark");
+    });
+  } else {
+    bodyElement.classList.remove("dark");
+    navElement.classList.remove("dark");
+    navLogoElement.classList.remove("dark");
+    navOptions.classList.remove("dark");
+    noPokemonElement.classList.remove("dark");
+    favoritesContainer.classList.remove("dark");
+    pokemonContainer.forEach((pokemon) => {
+      pokemon.classList.remove("dark");
+    });
+    pokeName.forEach((pokemon) => {
+      pokemon.classList.remove("dark");
+    });
+    pokeId.forEach((pokemon) => {
+      pokemon.classList.remove("dark");
+    });
+    bottomContainer.forEach((container) => {
+      container.classList.remove("dark");
+    });
+    pokeStats.forEach((stats) => {
+      stats.classList.remove("dark");
+    });
+
+    footerContainer.classList.remove("dark");
+    footerIcon.forEach((icon) => {
+      icon.classList.remove("dark");
+    });
+  }
+}
+
+// handles the dark mode function
+function toggleDarkMode() {
+  isDarkMode = !isDarkMode;
+
+  const bodyElement = document.querySelector("body");
+  const navElement = document.querySelector(".navbar");
+  const navLogoElement = document.querySelector(".navbar__logo");
+  const navOptions = document.querySelector(".navbar__options");
+  const noPokemonElement = document.querySelector(".main__noPokemonContainer");
+  const favoritesContainer = document.querySelector(
+    ".main__favoritesContainer"
+  );
+  const pokemonContainer = document.querySelectorAll(
+    ".main__favoritesContainer__pokemon"
+  );
+  const pokeName = document.querySelectorAll(".pokeName");
+  const pokeId = document.querySelectorAll(".pokeId");
+  const bottomContainer = document.querySelectorAll(
+    ".main__favoritesContainer__pokemon__bottom"
+  );
+  const pokeStats = document.querySelectorAll(
+    ".main__favoritesContainer__pokemon__bottom__pokeStats"
+  );
+
+  const footerContainer = document.querySelector(".footer");
+  const footerIcon = document.querySelectorAll(".icons");
+
+  bodyElement.classList.toggle("dark");
+  navElement.classList.toggle("dark");
+  navLogoElement.classList.toggle("dark");
+  navOptions.classList.toggle("dark");
+  noPokemonElement.classList.toggle("dark");
+  favoritesContainer.classList.toggle("dark");
+  pokemonContainer.forEach((pokemon) => {
+    pokemon.classList.toggle("dark");
+  });
+  pokeName.forEach((pokemon) => {
+    pokemon.classList.toggle("dark");
+  });
+  pokeId.forEach((pokemon) => {
+    pokemon.classList.toggle("dark");
+  });
+  bottomContainer.forEach((container) => {
+    container.classList.toggle("dark");
+  });
+  pokeStats.forEach((stats) => {
+    stats.classList.toggle("dark");
+  });
+
+  footerContainer.classList.toggle("dark");
+  footerIcon.forEach((icon) => {
+    icon.classList.toggle("dark");
+  });
+
+  localStorage.setItem("darkMode", isDarkMode);
+}
+
+// iterates through each pokemon in favorites then display them
 async function checkFavoritesPokemon() {
-  console.log("Checking favorite Pokemon...");
   for (const pokeId of favoritePokemon) {
     try {
       const apiURL = `https://pokeapi.co/api/v2/pokemon/${pokeId}/`;
@@ -22,14 +166,15 @@ async function checkFavoritesPokemon() {
       }
 
       const pokeData = await res.json();
-
       displayPokemon(pokeData);
+      applyDarkStyles();
     } catch (error) {
       alert(`Error: ${error}`);
     }
   }
 }
 
+// display pokemon container
 function displayPokemon(data) {
   if (favoritePokemon.length == 0) {
     emptyMessageContainer.style.display = "block";
@@ -69,10 +214,10 @@ function displayPokemon(data) {
 
   pokemonContainer.appendChild(pokemonContainerTop);
   pokemonContainer.appendChild(pokemonContainerBottom);
-
   favoriteContainer.appendChild(pokemonContainer);
 }
 
+// diplay pokemon stats
 function displayPokeStats(data, container) {
   // pokemon stats
   const pokeStatsConstainer = document.createElement("div");
@@ -114,6 +259,7 @@ function displayPokeStats(data, container) {
   container.appendChild(pokeStatsConstainer);
 }
 
+// display pokemon stats
 function displayPokeTypes(data, container) {
   // pokemon types
   const pokeTypesContainer = document.createElement("div");
@@ -192,6 +338,7 @@ function displayPokeTypes(data, container) {
   container.appendChild(pokeTypesContainer);
 }
 
+// display pokemon id and name
 function displayPokeIdName(data, container) {
   const pokeIdNameContainer = document.createElement("div");
   pokeIdNameContainer.classList.add(
@@ -206,6 +353,7 @@ function displayPokeIdName(data, container) {
 
   const pokeId = document.createElement("p");
   pokeId.classList.add("pokeId");
+
   if (data.id < 10) {
     pokeId.innerText = `No. 00${data.id}`;
   } else if (data.id < 100) {
@@ -220,6 +368,7 @@ function displayPokeIdName(data, container) {
   container.appendChild(pokeIdNameContainer);
 }
 
+// display pokemon gif
 function displayPokeGif(data, container) {
   const gifContainer = document.createElement("div");
   gifContainer.classList.add("main__favoritesContainer__pokemon__top__pokeGif");
@@ -236,6 +385,7 @@ function displayPokeGif(data, container) {
   container.appendChild(gifContainer);
 }
 
+// handles the delete function of delete button in favorites page
 function deletePokemon(data, currentContainer) {
   currentContainer.remove();
 
@@ -247,3 +397,4 @@ function deletePokemon(data, currentContainer) {
 }
 
 checkFavoritesPokemon();
+applyDarkStyles();

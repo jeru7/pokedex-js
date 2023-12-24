@@ -22,7 +22,6 @@
 }
 
 body {
-  background-color: var(--second-color);
   font-family: var(--primary-text);
 }
 
@@ -77,6 +76,10 @@ body {
 
 .navbar__options ul li:hover i {
   transform: scale(1.1);
+}
+
+.darkLight {
+  cursor: pointer;
 }
 
 .main {
@@ -167,6 +170,7 @@ span.bold {
   font-size: 14px;
 }
 
+/* pokemon display */
 .main__container__display {
   display: grid;
   grid-template-columns: 1fr 1fr;

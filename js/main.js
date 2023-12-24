@@ -38,12 +38,21 @@ class Pokedex {
     // runs pokedex after being initialized
     this.runPokedex();
 
+    // dark mode
     this.isDarkMode = false;
     this.darkModeButton = document.querySelector("#darkModeToggler");
     this.darkModeButton.addEventListener("click", () => this.toggleDarkMode());
+    this.checkDarkMode();
   }
 
-  toggleDarkMode() {
+  checkDarkMode() {
+    const darkMode = localStorage.getItem("darkMode");
+    this.isDarkMode = darkMode === "true";
+
+    this.applyDarkStyles();
+  }
+
+  applyDarkStyles() {
     this.bodyElement = document.querySelector("body");
     this.navElement = document.querySelector(".navbar");
     this.navLogoElement = document.querySelector(".navbar__logo");
@@ -62,11 +71,84 @@ class Pokedex {
     const pokeStatsContainerElement = document.querySelector(
       ".main__container__displayStats"
     );
-
     this.footerContainer = document.querySelector(".footer");
     this.footerIcon = document.querySelectorAll(".icons");
 
+    if (this.isDarkMode) {
+      this.bodyElement.classList.add("dark");
+      this.navElement.classList.add("dark");
+      this.navLogoElement.classList.add("dark");
+      this.navOptions.classList.add("dark");
+      this.searchContainer.classList.add("dark");
+      this.searchNoteContainer.classList.add("dark");
+      this.displayContainer.classList.add("dark");
+      this.pokeDisplayContainer.classList.add("dark");
+      if (pokeName) {
+        pokeName.classList.add("dark");
+      }
+      favButton.classList.add("dark");
+      if (pokeId) {
+        pokeId.classList.add("dark");
+      }
+      if (pokeStatsContainerElement) {
+        pokeStatsContainerElement.classList.add("dark");
+      }
+      this.pokeStatsConstainer.classList.add("dark");
+      this.footerContainer.classList.add("dark");
+      this.footerIcon.forEach((icon) => {
+        icon.classList.add("dark");
+      });
+    } else {
+      this.bodyElement.classList.remove("dark");
+      this.navElement.classList.remove("dark");
+      this.navLogoElement.classList.remove("dark");
+      this.navOptions.classList.remove("dark");
+      this.searchContainer.classList.remove("dark");
+      this.searchNoteContainer.classList.remove("dark");
+      this.displayContainer.classList.remove("dark");
+      this.pokeDisplayContainer.classList.remove("dark");
+      if (pokeName) {
+        pokeName.classList.remove("dark");
+      }
+      favButton.classList.remove("dark");
+      if (pokeId) {
+        pokeId.classList.remove("dark");
+      }
+      if (pokeStatsContainerElement) {
+        pokeStatsContainerElement.classList.remove("dark");
+      }
+      this.pokeStatsConstainer.classList.remove("dark");
+      this.footerContainer.classList.remove("dark");
+      this.footerIcon.forEach((icon) => {
+        icon.classList.remove("dark");
+      });
+    }
+  }
+
+  // handles the dark mode function
+  toggleDarkMode() {
     this.isDarkMode = !this.isDarkMode;
+
+    this.bodyElement = document.querySelector("body");
+    this.navElement = document.querySelector(".navbar");
+    this.navLogoElement = document.querySelector(".navbar__logo");
+    this.navOptions = document.querySelector(".navbar__options");
+    this.searchContainer = document.querySelector(
+      ".main__container__searchContainer"
+    );
+    this.searchNoteContainer = document.querySelector(
+      ".main__container__searchNote"
+    );
+    const pokeName = document.querySelector(
+      ".main__container__displayPokemon__name"
+    );
+    const favButton = document.querySelector("#favoriteButton");
+    const pokeId = document.querySelector("#pokeId");
+    const pokeStatsContainerElement = document.querySelector(
+      ".main__container__displayStats"
+    );
+    this.footerContainer = document.querySelector(".footer");
+    this.footerIcon = document.querySelectorAll(".icons");
 
     this.bodyElement.classList.toggle("dark");
     this.navElement.classList.toggle("dark");
@@ -91,6 +173,8 @@ class Pokedex {
     this.footerIcon.forEach((icon) => {
       icon.classList.toggle("dark");
     });
+
+    localStorage.setItem("darkMode", this.isDarkMode);
   }
 
   // run pokedex method

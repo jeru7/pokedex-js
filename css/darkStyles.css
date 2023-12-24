@@ -82,10 +82,6 @@ body.dark {
   color: var(--text-color-dark);
 }
 
-/* .main__container__displayStats__pokeStats.dark {
-  border-color: var(--fourth-color-dark);
-  color: var(--text-color-dark);
-} */
 .main__container__displayStats__pokeStats__stats.dark > * {
   color: var(--text-color-dark) !important;
 }
